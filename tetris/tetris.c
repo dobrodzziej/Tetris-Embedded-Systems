@@ -728,6 +728,7 @@ void drawGame(struct tetBoard *board) {
 
   // wattron(board->gameWin, COLOR_PAIR(board->cur+1));
 
+
   for (int i = 0; i < 4; i++) { // draw current tetris piece
     if (board->blocks[i][1] + board->piece.y >= 0 || i == 3) {
       wmove(board->gameWin, board->blocks[i][1] + board->piece.y + 1, board->blocks[i][0] + board->piece.x + 1);

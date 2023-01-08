@@ -18,14 +18,26 @@
 
 int main(void) {
 
-    int display[8] = {0};
+    char * ptr;
+    char Byte[ByteSize] = {""};
+    int display[8];
+    int parsed;
     for (int y = 0; y < 8; y++) {
         for (int x = 0; x < 8; x++) { // draw tetris pieces already placed on the board
             // if (board->grid[x][y] != 0) {
             if (((x + y) + 5) % 3 == 0) {
-                display[y] |= (1u << x);
+                // wmove(board->gameWin, y + 1, x + 1);
+                // waddch(board->gameWin, 79);
+                Byte[x] = '1';
+            }
+            else {
+                Byte[x] = '0';
             }
         }
+        parsed = strtol(Byte, & ptr, 2);
+        // printf("%x\n", parsed);
+        display[y] = parsed;
+        // Byte[0] = '\0';
     }
 
     // for (int i = 0; i < 8; i++){
@@ -39,35 +51,8 @@ int main(void) {
     }
     printf("\n");
 
-    int display2[8] = {0};
-    for (int y = 0; y < 8; y++) {
-        for (int x = 0; x < 8; x++) { // draw tetris pieces already placed on the board
-            // if (board->grid[x][y] != 0) {
-            if (((x + y) + 3) % 5 == 0) {
-                // wmove(board->gameWin, y + 1, x + 1);
-                // waddch(board->gameWin, 79);
-                display2[y] |= (1u << x);
-            }
-        }
-    }
 
-    // for (int i = 0; i < 8; i++){
-    //     printf("%x, ", display2[i]);
-    // }
-    // printf("\n");
 
-    for (int i = 0; i < 8; i++){
-        printf(BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY(display2[i]));
-        printf("\n");
-    }
-    printf("\n");
-
-    int display_fin[8];
-    for (int i = 0; i < 8; i++){
-        display_fin[i] = display[i] | display2[i];
-        printf(BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY(display_fin[i]));
-        printf("\n");
-    }
 
     return 0;
 }
